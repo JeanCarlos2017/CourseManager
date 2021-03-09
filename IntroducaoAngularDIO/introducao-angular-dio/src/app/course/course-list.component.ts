@@ -15,7 +15,7 @@ export class CourseListComponent implements OnInit{
             {
                 id: 1,
                 name: "Introdução ao Angular",
-                imageUrl: "url Omage",
+                imageUrl: "url Image",
                 price: 24.99,
                 code: "code introdução ao angular",
                 duration: 5,
