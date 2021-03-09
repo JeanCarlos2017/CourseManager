@@ -30,7 +30,7 @@ export class CourseListComponent implements OnInit{
                 price: 14.99,
                 code: "code introdução ao java",
                 duration: 12,
-                rating: 4.5,
+                rating: 3.5,
                 releaseData: "fevereiro/2021"
             },
 
