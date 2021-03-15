@@ -8,11 +8,24 @@ import { CourseService } from './course.service';
     styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit{
-   
-    courses: Course[] = [];
+    filteredCourses: Course[]= [];
+
+    _courses: Course[] = [];
     constructor(private courseService: CourseService){}
 
+    _filterBy: string;
     ngOnInit(): void {
-       this.courses= this.courseService.retrieveAll();
+       this._courses= this.courseService.retrieveAll();
+       this.filteredCourses= this._courses;
+    }
+
+    set filter(value: string){
+        this._filterBy= value;
+        this.filteredCourses=  this._courses.filter( (course: Course) => 
+                course.name.toLowerCase().indexOf(this._filterBy.toLowerCase()) > -1);
+    }
+
+    get filter(){
+        return this._filterBy;
     }
 }
