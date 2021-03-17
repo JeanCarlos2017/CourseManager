@@ -11,3 +11,25 @@
 .error-actions .btn {
      margin-right:10px; 
 }
+
+
+@media only screen and (max-width: 769px) {
+    .imagem-fundo{
+        background-image: url(../../assets/images/responsividade/tablet/pagina-nao-encontrada-2-768.jpg);
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .imagem-fundo{
+        background-image: url(../../assets/images/responsividade/mobile-l/pagina-nao-encontrada-2-425p.jpg);
+        height: 300px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .imagem-fundo{
+        background-image: url(../../assets/images/responsividade/mobile-sm/pagina-nao-encontrada-2-320.jpg);
+        height: 230px;
+    }
+}
