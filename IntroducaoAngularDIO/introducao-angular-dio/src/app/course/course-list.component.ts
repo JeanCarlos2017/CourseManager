@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from './course';
 import { CourseService } from './course.service';
-//imports para colocar o R$ 
-import { LOCALE_ID } from '@angular/core';
-
-providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}]
+//imports para colocar o R$
 
 @Component({
-    selector: 'app-course-list', 
     templateUrl: './course-list.component.html',
     styleUrls: ['./course-list.component.css']
 })
