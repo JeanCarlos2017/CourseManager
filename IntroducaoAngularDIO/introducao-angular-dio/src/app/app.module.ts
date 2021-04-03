@@ -12,6 +12,7 @@ import { Error404Component } from './error-404/error-404.component';
 //icones bootstrap 
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { houseFill, envelopeFill} from 'ngx-bootstrap-icons';
+import { FooterComponent } from './footer/footer.component';
 
 const icons = {
     houseFill, 
@@ -26,7 +27,8 @@ const icons = {
     StarComponent, 
     ReplacePipe, 
     NavBarComponent, 
-    Error404Component
+    Error404Component, 
+    FooterComponent
   ],
   imports: [
     BrowserModule, 
@@ -42,7 +44,7 @@ const icons = {
         path: '**', component: Error404Component
       }
     ]),
-    NgxBootstrapIconsModule.pick(icons)
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
