@@ -9,15 +9,10 @@ import { ReplacePipe } from './pipe/replace.pipe';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
-//icones bootstrap 
-import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
-import { houseFill, envelopeFill} from 'ngx-bootstrap-icons';
 import { FooterComponent } from './footer/footer.component';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
-const icons = {
-    houseFill, 
-    envelopeFill
-  };
+
 //fim icones bootstrap
 
 @NgModule({
@@ -28,7 +23,8 @@ const icons = {
     ReplacePipe, 
     NavBarComponent, 
     Error404Component, 
-    FooterComponent
+    FooterComponent, 
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule, 
@@ -40,9 +36,16 @@ const icons = {
       {
         path: 'courses', component: CourseListComponent
       },
+     
+      {
+        path:'courses/info/:id', component: CourseInfoComponent
+      },
+
+
+      // ele tem quer por último, do contrário toda nova rota irá apontar para ele
       {
         path: '**', component: Error404Component
-      }
+      },
     ]),
    
   ],
