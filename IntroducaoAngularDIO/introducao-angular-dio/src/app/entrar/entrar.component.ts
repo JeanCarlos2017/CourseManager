@@ -19,7 +19,7 @@ export class EntrarComponent implements OnInit {
           private alertService: AlertasService) { }
 
   ngOnInit(): void {
-    this.title.setTitle("Entre no Blog");
+    this.title.setTitle("Entre no Course Manager");
   }
   
   login(){
