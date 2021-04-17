@@ -41,7 +41,7 @@ import { AlertasComponent } from './alertas/alertas.component';
     HttpClientModule, 
     RouterModule.forRoot([
       {
-        path: '', redirectTo: 'cadastrar', pathMatch: 'full'
+        path: '', redirectTo: 'entrar', pathMatch: 'full'
       },
       {
         path: 'entrar', component: EntrarComponent
