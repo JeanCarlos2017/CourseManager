@@ -13,7 +13,6 @@ import { AuthService } from '../service/auth.service';
 export class CadastrarComponent implements OnInit {
   user: User= new User
   confirmarSenha: string;
-  tipoUsuario: string;
 
   constructor(private authService: AuthService, private router: Router, private title: Title,
     private alertService: AlertasService) { }
@@ -27,19 +26,20 @@ export class CadastrarComponent implements OnInit {
       this.confirmarSenha= event.target.value;  
   }
 
-  setTipoUsuario(event: any){
-    this.tipoUsuario= event.target.value; 
-  }
-
-  cadastrar(){
-      this.user.tipo= this.tipoUsuario;
+ cadastrar(){
+      
       if(this.user.senha == this.confirmarSenha){
         this.authService.cadastrar(this.user).subscribe((resp: User) => {
           this.user= resp;
           this.router.navigate(['/entrar']);
           this.alertService.showAlert('usuario cadastrado  com sucesso!', 'success') 
-          
-          
+         }, erro =>{
+          if(erro.status >= 400){
+            erro.error.campos.forEach( (campo)=>{
+              this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+            })
+            
+          }
         });
 
       }else{
