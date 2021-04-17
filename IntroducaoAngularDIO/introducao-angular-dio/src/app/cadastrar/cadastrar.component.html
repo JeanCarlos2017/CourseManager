@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row d-flex align-items-center">
+        <!-- imagem de fundo, lado direito  -->
+        <div class="col-md-6" id="img-bg">
+               
+        </div>
+        <!-- campos necessários para login, lado esquerda-->
+        <div class="col-md-6">
+            <div class="row d-flex justify-content-center" id="infoCadastro">
+                    <div class="col-md-6">
+                        <h1 class="text-center mb-3">Cadastro </h1>
+                        <!-- nome real -->
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input [(ngModel)]='user.nome' type="text" class="form-control" name="nome" id="nome" placeholder="Digite o seu nome real">
+                        </div>
+                        <!-- nome do usuário -->
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input [(ngModel)]="user.email" type="email" class="form-control" name="email" id="email" placeholder="Digite o email">
+                        </div>
+
+                        <!-- senha do usuário-->
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input (input)='confirmPassword($event)' type="password" class="form-control" name="senha" id="senha" placeholder="Digite a sua senha">
+                        </div>
+                        
+                        <!-- confirmar senha-->
+                        <div class="form-group">
+                            <label for="confirmacao-senha">Confirme a sua senha</label>
+                            <input [(ngModel)]='user.senha' type="password" class="form-control" name="confirmacao-senha" id="confirmacao-senha" placeholder="Digite a sua senha novamente">
+                        </div>
+                        <hr>
+                        <!-- botões -->
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger" routerLink='/entrar' >Cancelar</button>
+                            <button type="submit" class="btn btn-success" (click)= 'cadastrar()'>Cadastrar</button>
+                        </div>
+                        <hr>
+                        
+                    </div>
+                    
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
