@@ -1,7 +1,7 @@
-export class User{
+export class UserLogin{
     public id_usuario: number;
     public email: string;
     public senha: string;
     public nome: string;
-    public tipo: string;
+    public token: string;
 }
