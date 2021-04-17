@@ -38,9 +38,10 @@ export class EntrarComponent implements OnInit {
         this.alertService.showAlert('usuario logado com sucesso!', 'success')
 
     }, erro =>{
-      if(erro.status == 404){
-        //alert(erro.error.titulo)
-        this.alertService.showAlert(erro.error.titulo, 'danger')
+      if(erro.status >= 400){
+        erro.error.campos.forEach( (campo)=>{
+          this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+        })
         
       }
     });
