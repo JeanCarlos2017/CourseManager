@@ -1,11 +1,11 @@
-<h2 class="display-4 text-center"> Course Info: {{ course.name }} </h2>
+<h2 class="display-4 text-center"> Course Info: {{ course.nome }} </h2>
 <hr>
 
 <form #courseForm="ngForm" class="mt-4">
     <div class="mb-3">
         <label for="nameInput" class="form-label">Name</label>
 
-        <input [(ngModel)]="course.name" required name="name" #courseName="ngModel"
+        <input [(ngModel)]="course.nome" required name="name" #courseName="ngModel"
             [ngClass]="{'is-invalid': courseName.invalid}" type="text" class="form-control" id="nameInput"
             aria-describedby="nameHelp">
 

@@ -25,7 +25,7 @@
     <tbody>
         <tr *ngFor="let course of filteredCourses">
             <td><img [src]= "course.imageUrl" width="40px" height="40px"></td>
-            <td>{{ course.name }}</td>
+            <td>{{ course.nome }}</td>
             <td>{{ course.price | currency:'BRL':true }}</td>
             <td>{{ course.code | lowercase | replace: '-' : ' '}}</td>
             <td>{{ course.releaseDate | date: 'dd/MM/yyyy'  }}</td>
