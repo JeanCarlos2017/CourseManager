@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from './course';
+import { Course } from '../model/course';
 import { CourseService } from './course.service';
 //imports para colocar o R$
 

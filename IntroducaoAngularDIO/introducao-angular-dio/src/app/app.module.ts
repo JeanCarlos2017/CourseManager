@@ -11,7 +11,6 @@ import { ReplacePipe } from './pipe/replace.pipe';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
-import { FooterComponent } from './footer/footer.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
@@ -28,7 +27,6 @@ import { AlertasComponent } from './alertas/alertas.component';
     ReplacePipe, 
     NavBarComponent, 
     Error404Component, 
-    FooterComponent, 
     CourseInfoComponent, 
     EntrarComponent, 
     CadastrarComponent, 
