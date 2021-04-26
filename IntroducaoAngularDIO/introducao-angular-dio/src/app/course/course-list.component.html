@@ -2,7 +2,7 @@
 <form class= "form-group row">
     <label class="col-sm-2 col-form-label">Buscar por: </label>
     <div class="col-sm-10">
-        <input [(ngModel)]= "filter" name="filter" class="form-control">
+        <input [(ngModel)]= "filter" name="filter"  (keyup)="findByNome()" class="form-control">
     </div>
 </form>
 
@@ -14,8 +14,12 @@
             <th>Price BR</th>
             <th>Code</th>
             <th>Date</th>
+            <th>Duration</th>
             <th>Rating</th>
-            <th>Options</th>
+            <th>Link de Acesso</th>
+            <th>Edit</th>
+            <th>Matricule-se</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -25,11 +29,16 @@
             <td>{{ course.price | currency:'BRL':true }}</td>
             <td>{{ course.code | lowercase | replace: '-' : ' '}}</td>
             <td>{{ course.releaseDate | date: 'dd/MM/yyyy'  }}</td>
+            <td>{{ course.duration }} horas</td>
             <td>
                <app-star [rating]= course.rating></app-star>
             </td>
+            <td><a [href]="course.link_de_acesso" target="_blank">Acesse</a> </td>
             <td>
                 <a [routerLink]="['/courses/info', course.id ]" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <a [routerLink]="['/courses/info', course.id ]" class="btn btn-primary">Join</a>
             </td>
         </tr>
     </tbody>
