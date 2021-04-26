@@ -15,6 +15,7 @@ import { CourseInfoComponent } from './course-info/course-info.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { AlertasComponent } from './alertas/alertas.component';
+import { NewCourseComponent } from './new-course/new-course.component';
 
 
 //fim icones bootstrap
@@ -30,7 +31,8 @@ import { AlertasComponent } from './alertas/alertas.component';
     CourseInfoComponent, 
     EntrarComponent, 
     CadastrarComponent, 
-    AlertasComponent
+    AlertasComponent, 
+    NewCourseComponent
   ],
   imports: [
     BrowserModule, 
@@ -54,7 +56,9 @@ import { AlertasComponent } from './alertas/alertas.component';
       {
         path:'courses/info/:id', component: CourseInfoComponent
       },
-
+      {
+        path:'new-course', component: NewCourseComponent
+      },
 
       // ele tem quer por último, do contrário toda nova rota irá apontar para ele
       {

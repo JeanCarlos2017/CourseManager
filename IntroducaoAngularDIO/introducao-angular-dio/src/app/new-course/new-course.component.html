@@ -1,0 +1,110 @@
+<h2 class="display-4 text-center"> Criar novo curso </h2>
+<hr>
+
+<form #courseForm="ngForm" class="mt-4">
+    <div class="mb-3">
+        <label for="nameInput" class="form-label">Name</label>
+
+        <input [(ngModel)]="course.nome" required name="name" #courseName="ngModel"
+            [ngClass]="{'is-invalid': courseName.invalid}" type="text" class="form-control" id="nameInput"
+            aria-describedby="nameHelp">
+
+        <div id="nameHelp" class="invalid-feedback">
+            <span>Por favor digite o nome do curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="priceInput" class="form-label">Price</label>
+        <input [(ngModel)]="course.price" required name="price" #coursePrice="ngModel"
+            [ngClass]="{'is-invalid': coursePrice.invalid}" type="number" class="form-control" id="priceInput"
+            aria-describedby="priceHelp">
+
+        <div id="PriceHelp" class="invalid-feedback">
+            <span>Por favor digite um número para o preço do curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="ratingInput" class="form-label">rating</label>
+        <input [(ngModel)]="course.rating" required name="rating" #courseRating="ngModel"
+            [ngClass]="{'is-invalid': courseRating.invalid}" type="number" class="form-control" id="ratingInput"
+            aria-describedby="ratingHelp">
+
+        <div id="RatingHelp" class="invalid-feedback">
+            <span>Por favor digite um número para a nota do curso </span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="descriptionInput" class="form-label">Description</label>
+
+        <input [(ngModel)]="course.description" required name="description" #courseDescription="ngModel"
+            [ngClass]="{'is-invalid': courseDescription.invalid}" type="text" class="form-control" id="descriptionInput"
+            aria-describedby="descriptionHelp">
+
+        <div id="descriptionHelp" class="invalid-feedback">
+            <span>Por favor digite a descrição do curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="imageUrlInput" class="form-label">ImageUrl</label>
+
+        <input [(ngModel)]="course.imageUrl" required name="imageUrl" #courseImageUrl="ngModel"
+            [ngClass]="{'is-invalid': courseImageUrl.invalid}" type="text" class="form-control" id="imageUrlInput"
+            aria-describedby="imageUrlHelp">
+
+        <div id="imageUrlHelp" class="invalid-feedback">
+            <span>Por favor digite uma url</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="codeInput" class="form-label">Code</label>
+
+        <input [(ngModel)]="course.code" required name="code" #courseCode="ngModel"
+            [ngClass]="{'is-invalid': courseCode.invalid}" type="text" class="form-control" id="imageUrlInput"
+            aria-describedby="codeHelp">
+
+        <div id="codeHelp" class="invalid-feedback">
+            <span>Por favor digite uma código de curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="priceInput" class="form-label">Duration (Hours) </label>
+        <input [(ngModel)]="course.duration" required name="duration" #courseDuration="ngModel"
+            [ngClass]="{'is-invalid': courseDuration.invalid}" type="number" class="form-control" id="durationInput"
+            aria-describedby="durationHelp">
+
+        <div id="PriceHelp" class="invalid-feedback">
+            <span>Por favor digite a quantidade de horas do curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="codeInput" class="form-label">Link Course</label>
+
+        <input [(ngModel)]="course.link_de_acesso" required name="link" #courseLink="ngModel"
+            [ngClass]="{'is-invalid': courseLink.invalid}" type="text" class="form-control" id="linkInput"
+            aria-describedby="linkHelp">
+
+        <div id="codeHelp" class="invalid-feedback">
+            <span>Por favor digite o link de acesso ao curso</span>
+        </div>
+
+    </div>
+
+   <div class="row d-flex justify-content-center">
+        <button routerLink='/courses' class="btn btn-secondary mr-4">Back</button>
+       <button [disabled]="courseForm.invalid" (click)= "save()" class="btn btn-primary"> Save</button>
+   </div>
+</form>

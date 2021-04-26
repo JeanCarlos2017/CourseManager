@@ -24,4 +24,8 @@ export class CourseService {
   filterByNome(nome: string): Observable<Course[]>{
     return this.http.get<Course[]>(`http://localhost:8080/usuario/${this.idUser}/cursos/pesquisa-curso-por/${nome}`, this.token)
   }
+
+  saveCourse(course: Course): Observable<Course>{
+    return this.http.post<Course>(`http://localhost:8080/usuario/${this.idUser}/cursos/cadastrar`, course, this.token)
+  }
 }
