@@ -65,6 +65,44 @@
 
     </div>
 
+    <div class="mb-3">
+        <label for="codeInput" class="form-label">Code</label>
+
+        <input [(ngModel)]="course.code" required name="code" #courseCode="ngModel"
+            [ngClass]="{'is-invalid': courseCode.invalid}" type="text" class="form-control" id="imageUrlInput"
+            aria-describedby="codeHelp">
+
+        <div id="codeHelp" class="invalid-feedback">
+            <span>Por favor digite uma código de curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="priceInput" class="form-label">Duration (Hours) </label>
+        <input [(ngModel)]="course.duration" required name="duration" #courseDuration="ngModel"
+            [ngClass]="{'is-invalid': courseDuration.invalid}" type="number" class="form-control" id="durationInput"
+            aria-describedby="durationHelp">
+
+        <div id="PriceHelp" class="invalid-feedback">
+            <span>Por favor digite a quantidade de horas do curso</span>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="codeInput" class="form-label">Link Course</label>
+
+        <input [(ngModel)]="course.link_de_acesso" required name="link" #courseLink="ngModel"
+            [ngClass]="{'is-invalid': courseLink.invalid}" type="text" class="form-control" id="linkInput"
+            aria-describedby="linkHelp">
+
+        <div id="codeHelp" class="invalid-feedback">
+            <span>Por favor digite o link de acesso ao curso</span>
+        </div>
+
+    </div>
+
    <div class="row d-flex justify-content-center">
         <button routerLink='/courses' class="btn btn-secondary mr-4">Back</button>
        <button [disabled]="courseForm.invalid" (click)= "save()" class="btn btn-primary"> Save</button>

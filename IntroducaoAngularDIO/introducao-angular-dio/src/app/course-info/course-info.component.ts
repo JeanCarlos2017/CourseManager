@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from '../model/course';
-import { CourseService } from '../course/course.service';
+import { Title } from '@angular/platform-browser';
+import { AlertasService } from '../service/alertas.service';
+import { CourseService } from '../service/course.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-course-info',
@@ -10,20 +13,53 @@ import { CourseService } from '../course/course.service';
 })
 export class CourseInfoComponent implements OnInit {
   courseId: number;
-  course: Course;
+  course: Course= new Course();
   
-  constructor(private activeRoute: ActivatedRoute, 
-    private courseService: CourseService, 
-    private router: Router) { }
+  constructor(private courseService: CourseService, 
+    private router: Router,
+    private title: Title, 
+    private alertService: AlertasService,
+    private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.courseId= +this.activeRoute.snapshot.paramMap.get('id'); //o sinal '+' faz a conversão de string para number
-    this.course= this.courseService.retriveById(this.courseId);
+    this.isLogado();
+    this.title.setTitle("Altere um curso no CourseManager");
+    window.scrollTo(0,0);
+    this.courseId= +this.activeRoute.snapshot.paramMap.get('id'); 
+    this.findCourseById();
   }
 
   save(){
-    this.courseService.save(this.course);
-    alert("Curso alterado com sucesso");
-    this.router.navigate(['/courses']);
+    this.courseService.putCourse(this.course).subscribe( (resp: Course )=>{
+      this.alertService.showAlert("Curso alterado com sucesso", "success")
+      this.router.navigate(['/courses']);
+    }, erro =>{
+      if(erro.status >= 400){
+        erro.error.campos.forEach( (campo)=>{
+          this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+        })
+        
+      }
+    });
+  }
+
+  findCourseById(){
+    this.courseService.findCourseById(this.courseId).subscribe( (res: Course) =>{
+      this.course= res;
+    }, erro =>{
+      if(erro.status >= 400){
+        erro.error.campos.forEach( (campo)=>{
+          this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+        })
+        
+      }
+    });
+  }
+
+  isLogado() {
+    if (environment.token === '') {
+        this.alertService.showAlert("Sua seção foi encerrada, faça o login novamente", "info")
+        this.router.navigate(['/entrar']);
+    }
   }
 }
