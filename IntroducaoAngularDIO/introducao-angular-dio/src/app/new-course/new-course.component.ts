@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Course } from '../model/course';
 import { AlertasService } from '../service/alertas.service';
 import { CourseService } from '../service/course.service';
@@ -21,6 +22,7 @@ export class NewCourseComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle("Cadastrar novo curso em CourseManager");
     window.scrollTo(0,0);
+    this.isLogado();
 
   }
 
@@ -38,5 +40,12 @@ export class NewCourseComponent implements OnInit {
       }
     });
     
+  }
+
+  isLogado() {
+    if (environment.token === '') {
+        this.alertService.showAlert("Sua seção foi encerrada, faça o login novamente", "info")
+        this.router.navigate(['/entrar']);
+    }
   }
 }
