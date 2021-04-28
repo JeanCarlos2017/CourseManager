@@ -11,9 +11,15 @@
             <li class="nav-item">
                 <a routerLink='/courses' routerLinkActive="active" class="nav-link">Todos Cursos</a>
             </li>
-            <li class="nav-item">
-                <a routerLink='/your-course' routerLinkActive="active" class="nav-link">Seus Cursos</a>
-            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Seus Cursos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Em andamento</a>
+                  <a class="dropdown-item" href="#">Encerrados</a>
+                </div>                 
+              </li>
             <li class="nav-item">
                 <a routerLink='/new-course' routerLinkActive="active" class="nav-link">Novo Curso</a>
             </li>
