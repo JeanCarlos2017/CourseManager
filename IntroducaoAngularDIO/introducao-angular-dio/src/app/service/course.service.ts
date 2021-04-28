@@ -28,4 +28,12 @@ export class CourseService {
   saveCourse(course: Course): Observable<Course>{
     return this.http.post<Course>(`http://localhost:8080/usuario/${this.idUser}/cursos/cadastrar`, course, this.token)
   }
+
+  findCourseById(courseId: number): Observable<Course>{
+    return this.http.get<Course>(`http://localhost:8080/usuario/${this.idUser}/cursos/buscaPorId/${courseId}`, this.token)
+  }
+
+  putCourse(course: Course): Observable<Course>{
+    return this.http.put<Course>(`http://localhost:8080/usuario/${this.idUser}/cursos/alterar`, course, this.token)
+  }
 }
