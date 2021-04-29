@@ -1,0 +1,45 @@
+<h2 class="text-center">Cursos finalizados: </h2>
+<form class= "form-group row">
+    <label class="col-sm-2 col-form-label">Buscar por: </label>
+    <div class="col-sm-10">
+        <input [(ngModel)]= "filter" name="filter"  (keyup)="findByNome()" class="form-control">
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price BR</th>
+            <th>Code</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Rating</th>
+            <th>Access Link</th>
+            <th>Edit</th>
+            <th>Join Now</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let course of filteredCourses">
+            <td><img [src]= "course.imageUrl" width="40px" height="40px"></td>
+            <td>{{ course.nome }}</td>
+            <td>{{ course.price | currency:'BRL': 'symbol' }}</td>
+            <td>{{ course.code | lowercase | replace: '-' : ' '}}</td>
+            <td>{{ course.releaseDate | date: 'dd/MM/yyyy'  }}</td>
+            <td>{{ course.duration }} horas</td>
+            <td>
+               <app-star [rating]= course.rating></app-star>
+            </td>
+            <td><a [href]="course.link_de_acesso" target="_blank">Acesse</a> </td>
+            <td>
+                <a [routerLink]="['/courses/info', course.id ]" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <button (click)="remover(course.id)" class="btn btn-primary">Remover</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

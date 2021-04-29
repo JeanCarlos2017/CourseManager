@@ -16,6 +16,8 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { AlertasComponent } from './alertas/alertas.component';
 import { NewCourseComponent } from './new-course/new-course.component';
+import { CourseClosedComponent } from './course-closed/course-closed.component';
+import { CourseOpenedComponent } from './course-opened/course-opened.component';
 
 
 //fim icones bootstrap
@@ -32,7 +34,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
     EntrarComponent, 
     CadastrarComponent, 
     AlertasComponent, 
-    NewCourseComponent
+    NewCourseComponent, CourseClosedComponent, CourseOpenedComponent
   ],
   imports: [
     BrowserModule, 
@@ -58,6 +60,12 @@ import { NewCourseComponent } from './new-course/new-course.component';
       },
       {
         path:'new-course', component: NewCourseComponent
+      },
+      {
+        path:'course-opened', component: CourseOpenedComponent
+      },
+      {
+        path:'course-closed', component: CourseClosedComponent
       },
 
       // ele tem quer por último, do contrário toda nova rota irá apontar para ele
