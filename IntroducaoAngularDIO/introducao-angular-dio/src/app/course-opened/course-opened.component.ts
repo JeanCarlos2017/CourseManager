@@ -15,7 +15,7 @@ import { MatriculaService } from '../service/matricula.service';
 })
 export class CourseOpenedComponent implements OnInit {
 
-  filteredCourses: Course[] = [];
+  filteredCourses: Course[] = new Array();
 
   _courses: Course[];
   filter: string;
@@ -47,22 +47,47 @@ export class CourseOpenedComponent implements OnInit {
 
   findByNome() {
     if (this.filter === '') {
-      this.filteredCourses = this._courses;
+      this.filterVazio();
+    } else {
+      this.buscaCursoDeAcordoComFilter(this.filter, this.filteredCourses);
     }
-    else {
-      this.courseService.filterByNome(this.filter).subscribe((resp: Course[]) => {
-        this.filteredCourses = resp;
-      })
+  }
+
+  filterVazio() {
+    this.filteredCourses = this._courses;
+  }
+
+
+  buscaCursoDeAcordoComFilter(filter: string, filteredCourses: Course[]) {
+   this.resetaFilteredCourses();
+   this.addCourseAtFilteredCourse();
+  }
+
+  resetaFilteredCourses(){
+    this.filteredCourses = [];
+  }
+
+  addCourseAtFilteredCourse(){
+    for(let i= 0; i < this._courses.length; i++){
+      if(this.comparaNome(this._courses[i])){
+        this.filteredCourses.push(this._courses[i])
+      }
     }
+  }
+
+  comparaNome(course: Course){
+    if (course.nome.toLocaleLowerCase().indexOf(this.filter.toLowerCase()) > -1) return true;
+    else  return false
+    
   }
 
   finalizar(idCourse: number) {
     this.matriculaService.finalizarCurso(idCourse).subscribe( () => {
       this.alertService.showAlert("Curso finalizado com sucesso", "success")
       this.getCourseOpenedUser();
-      
+
     }, erro => {
-      if (erro.status === 400) {
+      if (erro.status === 404) {
         erro.error.campos.forEach((campo) => {
           this.alertService.showAlert('mensagem: ' + campo.mensagem, 'danger')
         })
