@@ -10,17 +10,18 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AuthService {
   constructor(private http: HttpClient) { }
+  baseUrl: string= 'http://localhost:8080/usuario/';
 
   entrar(userLogin: UserLogin): Observable<UserLogin>{
-     return this.http.post<UserLogin>('http://localhost:8080/usuario/login', userLogin);
+     return this.http.post<UserLogin>(this.baseUrl.concat('login'), userLogin);
    }
  
    cadastrar(user: User): Observable<User>{
-     return this.http.post<User>('http://localhost:8080/usuario/cadastrar', user);
+     return this.http.post<User>(this.baseUrl.concat('cadastrar'), user);
    }
  
    getByIdUser(id: number, token: Object): Observable<User>{
-     return this.http.get<User>(`http://localhost:8080/usuario/buscaPorId/${id}`, token);
+     return this.http.get<User>(this.baseUrl.concat(`buscaPorId/${id}`), token);
    }
  
    logado(){
@@ -33,6 +34,6 @@ export class AuthService {
    }
  
    atualizar(user: User): Observable<User>{
-     return this.http.put<User>('http://localhost:8080/usuario/atualizar', user);
+     return this.http.put<User>(this.baseUrl.concat('atualizar'), user);
    }
 }
