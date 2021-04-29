@@ -41,13 +41,38 @@ export class CourseClosedComponent implements OnInit {
 
   findByNome() {
     if (this.filter === '') {
-      this.filteredCourses = this._courses;
+      this.filterVazio();
+    } else {
+      this.buscaCursoDeAcordoComFilter(this.filter, this.filteredCourses);
     }
-    else {
-      this.courseService.filterByNome(this.filter).subscribe((resp: Course[]) => {
-        this.filteredCourses = resp;
-      })
+  }
+
+  filterVazio() {
+    this.filteredCourses = this._courses;
+  }
+
+
+  buscaCursoDeAcordoComFilter(filter: string, filteredCourses: Course[]) {
+   this.resetaFilteredCourses();
+   this.addCourseAtFilteredCourse();
+  }
+
+  resetaFilteredCourses(){
+    this.filteredCourses = [];
+  }
+
+  addCourseAtFilteredCourse(){
+    for(let i= 0; i < this._courses.length; i++){
+      if(this.comparaNome(this._courses[i])){
+        this.filteredCourses.push(this._courses[i])
+      }
     }
+  }
+
+  comparaNome(course: Course){
+    if (course.nome.toLocaleLowerCase().indexOf(this.filter.toLowerCase()) > -1) return true;
+    else  return false
+    
   }
 
   remover(idCourse: number){
