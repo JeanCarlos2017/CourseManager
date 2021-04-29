@@ -24,4 +24,8 @@ export class MatriculaService {
   listaMatricula(): Observable<Matricula[]>{
     return this.http.get<Matricula[]>(`http://localhost:8080/usuario/${this.idUser}/matricular/listar`, this.token)
   }
+
+  finalizarCurso(idCourse){
+    return this.http.post(`http://localhost:8080/usuario/${this.idUser}/matricular/concluir/${idCourse}`, this.token)
+  }
 }
