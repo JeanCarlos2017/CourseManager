@@ -13,19 +13,21 @@ export class MatriculaService {
 
   idUser: number= environment.id;
 
+  baseUrl: string= 'http://localhost:8080/usuario/';
+
   token= {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
   matricularAluno(idCourse: number): Observable<Matricula>{
-    return this.http.post<Matricula>(`http://localhost:8080/usuario/${this.idUser}/matricular/curso/${idCourse}`, this.token)
+    return this.http.post<Matricula>(this.baseUrl.concat(`${this.idUser}/matricular/curso/${idCourse}`), this.token)
   }
 
   listaMatricula(): Observable<Matricula[]>{
-    return this.http.get<Matricula[]>(`http://localhost:8080/usuario/${this.idUser}/matricular/listar`, this.token)
+    return this.http.get<Matricula[]>(this.baseUrl.concat(`${this.idUser}/matricular/listar`), this.token)
   }
 
   finalizarCurso(idCourse){
-    return this.http.post(`http://localhost:8080/usuario/${this.idUser}/matricular/concluir/${idCourse}`, this.token)
+    return this.http.post(this.baseUrl.concat(`${this.idUser}/matricular/concluir/${idCourse}`), this.token)
   }
 }
