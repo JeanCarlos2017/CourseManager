@@ -26,7 +26,7 @@
         <tr *ngFor="let course of filteredCourses">
             <td><img [src]= "course.imageUrl" width="40px" height="40px"></td>
             <td>{{ course.nome }}</td>
-            <td>{{ course.price | currency:'BRL':true }}</td>
+            <td>{{ course.price | currency:'BRL': 'symbol' }}</td>
             <td>{{ course.code | lowercase | replace: '-' : ' '}}</td>
             <td>{{ course.releaseDate | date: 'dd/MM/yyyy'  }}</td>
             <td>{{ course.duration }} horas</td>
@@ -38,7 +38,7 @@
                 <a [routerLink]="['/courses/info', course.id ]" class="btn btn-primary">Edit</a>
             </td>
             <td>
-                <a [routerLink]="['/courses/info', course.id ]" class="btn btn-primary">Join</a>
+                <button (click)="matricular(course.id)" class="btn btn-primary">Join</button>
             </td>
         </tr>
     </tbody>

@@ -3,8 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Course } from '../model/course';
+import { Matricula } from '../model/Matricula';
 import { AlertasService } from '../service/alertas.service';
 import { CourseService } from '../service/course.service';
+import { MatriculaService } from '../service/matricula.service';
 
 //imports para colocar o R$
 
@@ -18,7 +20,7 @@ export class CourseListComponent implements OnInit {
     _courses: Course[];
     filter: string;
     constructor(private courseService: CourseService, private alertService: AlertasService,
-        private title: Title, private router: Router) { }
+        private title: Title, private router: Router, private matriculaService: MatriculaService) { }
 
 
 
@@ -27,7 +29,7 @@ export class CourseListComponent implements OnInit {
         this.title.setTitle("Todos os cursos da plataforma Course Manager");
         this.isLogado();
         this.findAllCourse();
-
+        this.listarMatricula();
     }
 
     isLogado() {
@@ -54,4 +56,31 @@ export class CourseListComponent implements OnInit {
             })
         }
     }
+
+   listarMatricula(){
+        this.matriculaService.listaMatricula().subscribe( (resp: Matricula[])=>{
+            console.log(resp)
+        }, erro =>{
+            if(erro.status >= 400){
+              erro.error.campos.forEach( (campo)=>{
+                this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+              })
+              
+            }
+          });
+    }
+
+    matricular(idCourse: number){
+        this.matriculaService.matricularAluno(idCourse).subscribe( (resp: Matricula)=>{
+            console.log(resp)
+        }, erro =>{
+            if(erro.status === 400){
+              erro.error.campos.forEach( (campo)=>{
+                this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
+              })
+              
+            }
+          });
+    }
+
 }
