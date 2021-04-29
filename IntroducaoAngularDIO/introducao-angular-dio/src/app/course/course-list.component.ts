@@ -29,7 +29,6 @@ export class CourseListComponent implements OnInit {
         this.title.setTitle("Todos os cursos da plataforma Course Manager");
         this.isLogado();
         this.findAllCourse();
-        this.listarMatricula();
     }
 
     isLogado() {
@@ -57,22 +56,10 @@ export class CourseListComponent implements OnInit {
         }
     }
 
-   listarMatricula(){
-        this.matriculaService.listaMatricula().subscribe( (resp: Matricula[])=>{
-            console.log(resp)
-        }, erro =>{
-            if(erro.status >= 400){
-              erro.error.campos.forEach( (campo)=>{
-                this.alertService.showAlert('mensagem: '+campo.mensagem, 'danger')
-              })
-              
-            }
-          });
-    }
-
+   
     matricular(idCourse: number){
         this.matriculaService.matricularAluno(idCourse).subscribe( (resp: Matricula)=>{
-            console.log(resp)
+           this.alertService.showAlert("Matricula efetuada com sucesso", 'success')
         }, erro =>{
             if(erro.status === 400){
               erro.error.campos.forEach( (campo)=>{
