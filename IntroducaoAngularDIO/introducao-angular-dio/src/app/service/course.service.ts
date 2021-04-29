@@ -36,4 +36,8 @@ export class CourseService {
   putCourse(course: Course): Observable<Course>{
     return this.http.put<Course>(`http://localhost:8080/usuario/${this.idUser}/cursos/alterar`, course, this.token)
   }
+  
+  getCourseOpenedUser():Observable<Course[]>{
+    return this.http.get<Course[]>(`http://localhost:8080/usuario/${this.idUser}/cursos/pendente`, this.token)
+  }
 }
