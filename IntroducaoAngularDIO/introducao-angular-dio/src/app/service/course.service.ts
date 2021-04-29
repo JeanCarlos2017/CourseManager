@@ -40,4 +40,8 @@ export class CourseService {
   getCourseOpenedUser():Observable<Course[]>{
     return this.http.get<Course[]>(`http://localhost:8080/usuario/${this.idUser}/cursos/pendente`, this.token)
   }
+
+  getCourseClosedUser():Observable<Course[]>{
+    return this.http.get<Course[]>(`http://localhost:8080/usuario/${this.idUser}/cursos/finalizados`, this.token)
+  }
 }
